@@ -1,0 +1,11 @@
+{
+  "/mondeeTestRail/*": {
+    "target": "https://mondee.testrail.io",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/mondeeTestRail": "https://mondee.testrail.io"
+    }
+  }
+}

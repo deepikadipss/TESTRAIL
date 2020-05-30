@@ -3,22 +3,30 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
+    "build_NEEDTOCHECK": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng build",
+    "start": "ng serve --proxy-config proxy.config.json",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-prod": "ng build --aot --buildOptimizer=true --prod=true",
+    "start-prod": "ng serve --aot --optimization=true --prod=true --live-reload=false --disable-host-check -o --host 10.11.2.191 --port 4040 --proxy-config proxy.conf.json"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.0.1",
+    "@angular/cdk": "^9.2.4",
     "@angular/common": "~9.0.1",
     "@angular/compiler": "~9.0.1",
     "@angular/core": "~9.0.1",
     "@angular/forms": "~9.0.1",
+    "@angular/localize": "~9.0.1",
+    "@angular/material": "^9.2.4",
     "@angular/platform-browser": "~9.0.1",
     "@angular/platform-browser-dynamic": "~9.0.1",
     "@angular/router": "~9.0.1",
+    "@ng-bootstrap/ng-bootstrap": "^6.1.0",
+    "bootstrap": "^4.4.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
