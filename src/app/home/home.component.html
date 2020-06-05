@@ -1,7 +1,18 @@
 <div class="container">
-  <div class="row">
+  <div class="row" style="padding: 20px;">
+    <div class="col-3">
+      <input type="number" [(ngModel)]="runId" />
+    </div>
+    <div class="col-3">
+      <button class="btn" (click)="getData()" [disabled]="!runId">Get Data</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="testData.length">
     <div class="col">
-      <app-dynamic-table [tableHeader]="'Resource Wise'"></app-dynamic-table>
+      <app-dynamic-table [tableHeader]="'Resource Wise'" [(dataSource)]="testData"></app-dynamic-table>
+    </div>
+    <div class="col">
+      <app-dynamic-table [tableHeader]="'Resource Wise'" [(dataSource)]="testData"></app-dynamic-table>
     </div>
   </div>
 </div>

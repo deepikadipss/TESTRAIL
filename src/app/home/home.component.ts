@@ -7,15 +7,22 @@ import { AjaxService } from '../ajax.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  testData:any;
+  testData:any = [];
+  runId:any;
 
   constructor(
     public ajaxService: AjaxService
   ) { }
 
   ngOnInit(): void {
-    this.ajaxService.getTests();
-    console.log(this.testData);
+  }
+
+  getData() {
+    this.ajaxService.getTests(this.runId).subscribe(data=>{
+      this.testData = data;
+    }, error=>{
+      console.log(error);
+    });
   }
 
 }

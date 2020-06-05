@@ -9,9 +9,11 @@ import { RESOURCES } from './data';
 })
 export class DynamicTableComponent implements OnInit {
   @Input() tableHeader:string;
-  dataSource = MOCKDATA;
+  // dataSource = MOCKDATA;
+  @Input() dataSource:any = [];
   dataSourceToDisplay:any [];
   displayedColumns: string[] = [];
+  grandTotals: any = {};
 
   constructor() {
   }
@@ -23,28 +25,59 @@ export class DynamicTableComponent implements OnInit {
   initializeData() {
     this.dataSourceToDisplay = [];
     if(this.tableHeader == 'Resource Wise') {
-      this.dataSource.forEach(element => {
-        let obj = {
-          'Assigned To' : '',
-          'Passed' : 0,
-          'Failed' : 0
-        };
-        RESOURCES.forEach(res => {
-          if(element.assignedto_id == res.id) {
-            obj['Assigned To'] = res.name;
-            obj['Passed'] = 0;
-            obj['Failed'] = 0;
-          }
-        });
-        if(element.status_id == 1) {
-          obj['Passed'] += 1;
-        } else {
-          obj['Failed'] += 1;
-        }
-        this.dataSourceToDisplay.push(obj);
-      });
+      this.resourceWise();
     }
     this.displayedColumns = Object.keys(this.dataSourceToDisplay[0]);
+    this.grandTotalCal();
+  }
+
+  grandTotalCal() {
+    this.grandTotals['Assigned To'] = "Grand Total";
+    this.grandTotals['Passed'] = this.dataSourceToDisplay.map(t => t.Passed).reduce((acc, value) => acc + value, 0);
+    this.grandTotals['Failed'] = this.dataSourceToDisplay.map(t => t.Failed).reduce((acc, value) => acc + value, 0);
+  }
+
+  filterByWholeValue(array, string) {
+    let retunEle = null;
+    array.forEach((element, index) => {
+      if (element['Assigned To'] == string) {
+        retunEle = {element, 'index' :index};
+      }
+    });
+    return retunEle;
+  }
+
+  resourceWise() {
+    this.dataSource.forEach(element => {
+      for(let res of RESOURCES) {
+        if(element.assignedto_id == res.id) {
+          if(this.filterByWholeValue(this.dataSourceToDisplay, res.name)) {
+            let x = this.filterByWholeValue(this.dataSourceToDisplay, res.name);
+            let index = x.index;
+            if(element.status_id == 1) {
+              this.dataSourceToDisplay[index]['Passed'] += 1;
+            } else {
+              this.dataSourceToDisplay[index]['Failed'] += 1;
+            }
+            break;
+          } else {
+            let obj = {
+              'Assigned To': '',
+              'Passed': 0,
+              'Failed': 0,
+            };
+            obj['Assigned To'] = res.name;
+            if(element.status_id == 1) {
+              obj['Passed'] += 1;
+            } else {
+              obj['Failed'] += 1;
+            }
+            this.dataSourceToDisplay.push(obj);
+            break;
+          }
+        }
+      }
+    });
   }
 }
 

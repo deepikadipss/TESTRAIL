@@ -10,18 +10,14 @@ export class AjaxService {
     private http: HttpClient
   ) { }
 
-  getTests() {
+  getTests(runId) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Authorization': 'Basic ' + btoa('srinivasaraos@mondee.com'+':'+'mmss4UUU')
       })
     };
-    this.http.get<any>('mondeeTestRail/index.php?/api/v2/get_tests/44', httpOptions).subscribe(data => {
-      return data;
-    }, error => {
-      console.log('Error: ', error);
-    });
+    return this.http.get<any>(`mondeeTestRail/index.php?/api/v2/get_tests/${runId}`, httpOptions);
   }
 
 }
