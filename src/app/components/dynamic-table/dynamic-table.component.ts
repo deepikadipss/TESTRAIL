@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MOCKDATA } from './mock-data';
+import { RESOURCES } from './data';
 
 @Component({
   selector: 'app-dynamic-table',
@@ -7,14 +8,44 @@ import { MOCKDATA } from './mock-data';
   styleUrls: ['./dynamic-table.component.scss']
 })
 export class DynamicTableComponent implements OnInit {
-  displayedColumns: string[] = Object.keys(MOCKDATA[0]);
+  @Input() tableHeader:string;
   dataSource = MOCKDATA;
+  dataSourceToDisplay:any [];
+  displayedColumns: string[] = [];
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
+  ngOnInit(): void {
+    this.initializeData();
+  }
+
+  initializeData() {
+    this.dataSourceToDisplay = [];
+    if(this.tableHeader == 'Resource Wise') {
+      this.dataSource.forEach(element => {
+        let obj = {
+          'Assigned To' : '',
+          'Passed' : 0,
+          'Failed' : 0
+        };
+        RESOURCES.forEach(res => {
+          if(element.assignedto_id == res.id) {
+            obj['Assigned To'] = res.name;
+            obj['Passed'] = 0;
+            obj['Failed'] = 0;
+          }
+        });
+        if(element.status_id == 1) {
+          obj['Passed'] += 1;
+        } else {
+          obj['Failed'] += 1;
+        }
+        this.dataSourceToDisplay.push(obj);
+      });
+    }
+    this.displayedColumns = Object.keys(this.dataSourceToDisplay[0]);
+  }
 }
 
 
@@ -67,4 +98,4 @@ export class DynamicTableComponent implements OnInit {
 //           "expected": ""
 //       }
 //   ]
-// },
+// }
