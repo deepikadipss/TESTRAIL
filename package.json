@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-prod": "ng build --aot --buildOptimizer=true --prod=true",
-    "start-prod": "ng serve --aot --optimization=true --prod=true --live-reload=false --disable-host-check -o --host 10.11.2.191 --port 4040 --proxy-config proxy.conf.json"
+    "start-prod": "ng serve --aot --optimization=true --prod=true --live-reload=false --disable-host-check -o --host 10.11.2.191 --port 4040 --proxy-config proxy.config.json"
   },
   "private": true,
   "dependencies": {
@@ -36,9 +36,10 @@
     "@angular/cli": "~9.0.2",
     "@angular/compiler-cli": "~9.0.1",
     "@angular/language-service": "~9.0.1",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
+    "angular-cli-ghpages": "^0.6.2",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
