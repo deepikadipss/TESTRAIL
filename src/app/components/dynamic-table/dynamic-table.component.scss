@@ -1,3 +1,26 @@
 table {
   width: 100%;
 }
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+th.mat-header-cell {
+  background: #344453;
+  color: #fff;
+}
+
+th.mat-header-cell,
+td.mat-footer-cell,
+td.mat-cell {
+  text-align: center !important;
+  padding: 0 10px;
+}
+tr.mat-row {
+  height: auto;
+}
+::ng-deep .mat-sort-header-container {
+  display: flex;
+  justify-content: center;
+}

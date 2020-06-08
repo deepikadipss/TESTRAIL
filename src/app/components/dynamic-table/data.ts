@@ -84,4 +84,13 @@ export const RESOURCES = [
     "email": "venkatrohits@mmgs.com",
     "is_active": true
   }
-] 
+];
+export const STATUS = {
+  1 : "Passed",
+  2 : "Blocked",
+  3 : "Untested",
+  4 : "Retest",
+  5 : "Failed",
+  6 : "Not In Scope",
+  7 : "Not Pushed To QA"
+};

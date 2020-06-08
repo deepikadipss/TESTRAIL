@@ -9,6 +9,7 @@ import { AjaxService } from '../ajax.service';
 export class HomeComponent implements OnInit {
   testData:any = [];
   runId:any;
+  pageLoader:boolean = false;
 
   constructor(
     public ajaxService: AjaxService
@@ -18,9 +19,12 @@ export class HomeComponent implements OnInit {
   }
 
   getData() {
+    this.pageLoader = true;
     this.ajaxService.getTests(this.runId).subscribe(data=>{
+      this.pageLoader = false;
       this.testData = data;
     }, error=>{
+      this.pageLoader = false;
       console.log(error);
     });
   }

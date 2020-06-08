@@ -1,3 +1,10 @@
+<div class="pageLoader" *ngIf="pageLoader">
+  <div class="d-flex justify-content-center" style="height: 100%; align-items: center;">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
 <div class="container">
   <div class="row" style="padding: 20px;">
     <div class="col-3">
@@ -8,11 +15,19 @@
     </div>
   </div>
   <div class="row" *ngIf="testData.length">
-    <div class="col">
+    <div class="col-6">
       <app-dynamic-table [tableHeader]="'Resource Wise'" [(dataSource)]="testData"></app-dynamic-table>
     </div>
-    <div class="col">
-      <app-dynamic-table [tableHeader]="'Resource Wise'" [(dataSource)]="testData"></app-dynamic-table>
+    <div class="col-6">
+      <app-dynamic-table [tableHeader]="'Application Wise'" [(dataSource)]="testData"></app-dynamic-table>
+    </div>
+  </div>
+  <div class="row" *ngIf="testData.length">
+    <div class="col-12">
+      <app-dynamic-table [tableHeader]="'Module Wise'" [(dataSource)]="testData"></app-dynamic-table>
+    </div>
+    <div class="col-12">
+      <app-dynamic-table [tableHeader]="'Sub Module Wise'" [(dataSource)]="testData"></app-dynamic-table>
     </div>
   </div>
 </div>
