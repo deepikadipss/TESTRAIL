@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-prod": "ng build --aot --buildOptimizer=true --prod=true",
-    "start-prod": "ng serve --aot --optimization=true --prod=true --live-reload=false --disable-host-check -o --host 10.11.2.191 --port 4040 --proxy-config proxy.config.json"
+    "start-prod": "ng serve --prod=true --live-reload=false --disable-host-check -o --host 10.11.2.191 --port 4040 --proxy-config proxy.config.json"
   },
   "private": true,
   "dependencies": {
