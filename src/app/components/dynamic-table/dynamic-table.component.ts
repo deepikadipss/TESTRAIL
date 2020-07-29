@@ -20,6 +20,11 @@ export class DynamicTableComponent implements OnInit {
     this.initializeData();
   }
 
+  ngOnChanges() {
+    this.initializeData();
+    this.grandTotals = {};
+	}
+
   initializeData() {
     this.dataSourceToDisplay = [];
     if(this.tableHeader == 'Resource Wise') {
@@ -27,11 +32,11 @@ export class DynamicTableComponent implements OnInit {
     } else {
       this.createData();
     }
-    this.displayedColumns = Object.keys(this.dataSourceToDisplay[0]);
     this.grandTotalCal();
   }
 
   grandTotalCal() {
+    this.displayedColumns = Object.keys(this.dataSourceToDisplay[0]);
     if(this.tableHeader == 'Resource Wise') {
       this.grandTotals['Assigned To'] = "Grand Total";
     }

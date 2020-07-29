@@ -1,11 +1,16 @@
 export const RESOURCES = [
   {
+    "id": null,
+    "name": "-",
+    "email": "-",
+    "is_active": true
+  },
+  {
     "id": 3,
     "name": "Bhanu Prakash",
     "email": "bhanuprakasht@mondee.com",
     "is_active": true
   },
- 
   {
     "id": 2,
     "name": "Hasanth K",

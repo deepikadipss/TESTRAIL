@@ -14,20 +14,62 @@
       <button class="btn" (click)="getData()" [disabled]="!runId">Get Data</button>
     </div>
   </div>
-  <div class="row" *ngIf="testData.length">
+  <div class="row" *ngIf="testData.length"  style="padding-bottom: 0px;">
     <div class="col-6">
       <app-dynamic-table [tableHeader]="'Resource Wise'" [(dataSource)]="testData"></app-dynamic-table>
     </div>
-    <div class="col-6">
+    <div class="col-6"  > 
+        <h5>Resource wise</h5>
+      <my-app [(dataSource)]="testData"></my-app>
+  </div>
+</div>
+  <div class="row" *ngIf="testData.length" >
+
+    <div class="col-10">
       <app-dynamic-table [tableHeader]="'Application Wise'" [(dataSource)]="testData"></app-dynamic-table>
+      <br>
+      <br>
     </div>
+    <div class="col-6"  > 
+      <h5>Application wise</h5>
+    <app-application-wise [(dataSource)]="testData"   ></app-application-wise>
+   
+</div>
+<div class="col-6"> 
+  <h5>Application wise Quality Index </h5>
+<app-application-wise [(dataSource)]="testData"  [(onlypassed)]="onlypassed"></app-application-wise>
+
+</div>
+  
   </div>
   <div class="row" *ngIf="testData.length">
     <div class="col-12">
       <app-dynamic-table [tableHeader]="'Module Wise'" [(dataSource)]="testData"></app-dynamic-table>
     </div>
+    <div   style="width:800px;height:500px"  >  
+        <h5>Module wise</h5>
+    <app-module-wise   [(dataSource)]="testData"  ></app-module-wise>
+    </div>
+   
+  </div>
+
+  <div class="row" *ngIf="testData.length">
+      <div class="col-12">
+          <app-dynamic-table [tableHeader]="'Sub Module Wise'" [(dataSource)]="testData"></app-dynamic-table>
+        </div>
+  <div style="width:800px;height:500px" > 
+    <h5>Sub Module wise</h5>
+    <app-sub-module [(dataSource)]="testData" ></app-sub-module>
+  </div>
+</div>
+
+  
+  <div class="row" *ngIf="errorMsg">
     <div class="col-12">
-      <app-dynamic-table [tableHeader]="'Sub Module Wise'" [(dataSource)]="testData"></app-dynamic-table>
+      <p style="color: red;"> {{ errorMsg }} </p>
     </div>
   </div>
 </div>
+
+
+
